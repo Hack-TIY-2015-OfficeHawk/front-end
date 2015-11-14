@@ -1,4 +1,4 @@
-let AdminController = function($scope, $state, UserService) {
+let AdminController = function($scope, $state, UserService, ConsoleService) {
   
   $scope.logout = function () {
     UserService.userLogout();
@@ -11,8 +11,15 @@ let AdminController = function($scope, $state, UserService) {
     });
   };
 
+  ConsoleService.getOrgList().then( (response) => {
+    console.log(response.data.employees);
+    $scope.employees = response.data.employees;
+  });
+
+
+
 };
 
-AdminController.$inject = ['$scope', '$state', 'UserService'];
+AdminController.$inject = ['$scope', '$state', 'UserService', 'ConsoleService'];
 
 export default AdminController;

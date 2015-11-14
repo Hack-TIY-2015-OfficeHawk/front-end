@@ -14,9 +14,11 @@
 </div>
 
 <div class="employee-views">
-  
-  <ul>
-    <li>ng-repeat of all employees to view their trends</li>
+
+<h3>Employees in your Organization</h3>
+
+  <ul ng-repeat="employee in employees">
+    <li>{{ employee.username }}</li>
   </ul>
 
 </div>
