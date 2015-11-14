@@ -6391,8 +6391,21 @@ body {
   background: #e2ebf3; }
 
 .container {
-  margin: 15px auto;
-  width: 75%; }
+  margin: 0 auto;
+  width: 100%; }
+
+.wrapper {
+  width: 100%;
+  height: 575px;
+  overflow: hidden;
+  position: relative;
+  margin: 0; }
+
+.logo {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -505px; }
 
 .beacons-current {
   border: 1px solid #0D0D0D; }
