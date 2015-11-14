@@ -20,6 +20,7 @@ var config = function config($stateProvider, $urlRouterProvider) {
     templateUrl: 'templates/register.tpl.html'
   }).state('root.login', {
     url: '/login',
+    controller: 'LoginController',
     templateUrl: 'templates/login.tpl.html'
   }).state('root.admin', {
     url: '/admin',
@@ -64,7 +65,16 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var LoginController = function LoginController($scope) {};
+var LoginController = function LoginController($scope, $state, UserService) {
+
+  $scope.addUser = function (user) {
+    UserService.addUser(user).then(function (res) {
+      $scope.user = {};
+      console.log(res);
+    });
+    $state.go('root.home');
+  };
+};
 
 LoginController.$inject = ['$scope'];
 
