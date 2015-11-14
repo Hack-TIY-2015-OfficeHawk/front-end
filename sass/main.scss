@@ -1,6 +1,5 @@
-// Put any @imports here
-// See Readme for a list of supported ones
 @import "foundation";
+@import "font-awesome";
 
 // Color Scheme
 
@@ -11,7 +10,7 @@ $dkgreen: #3A5959;
 $teal: #008D73;
 
 body {
-  background: #e2ebf3;
+  background: $ltgray;
 }
 
 .container {
@@ -19,9 +18,17 @@ body {
   width: 75%;
 }
 
+.fa-home {
+  font-size: 18px;
+}
+
 
 
 // Admin Console
+
+h2 {
+  display: inline-block;
+}
 
 .beacons-current {
   border: 1px solid $black;
@@ -35,12 +42,13 @@ body {
 // logout button
 
 .logout-btn {
+  float: right;
   border: none;
   margin-top: 10px;
   background-color: $teal;
   border-radius: 5px;
   outline: none;
-  box-shadow: 0px 5px darken($dkgreen, 10%);
+  box-shadow: 0px 5px lighten($dkgreen, 5%);
 }
 .logout-btn:hover {
   background-color: lighten($dkgreen, 10%);
