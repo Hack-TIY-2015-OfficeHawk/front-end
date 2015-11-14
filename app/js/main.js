@@ -235,17 +235,6 @@ var UserService = function UserService($http, SERVER, $cookies, $state) {
     var u = new User(obj);
     return $http.post(url, u, SERVER.CONFIG);
   };
-
-  // Add a new organization
-
-  var Organization = function Organization(obj) {
-    this.name = obj.name;
-  };
-
-  this.addOrg = function (obj) {
-    var o = new Organization(obj);
-    return $http.post(url, o, SERVER.CONFIG);
-  };
 };
 
 UserService.$inject = ['$http', 'SERVER', '$cookies', '$state'];
