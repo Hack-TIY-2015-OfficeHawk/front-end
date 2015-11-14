@@ -8432,6 +8432,12 @@ body {
 .fa-home {
   font-size: 18px; }
 
+.home-btns {
+  margin-top: 5px;
+  text-align: center; }
+  .home-btns button {
+    margin-left: 5px; }
+
 h2 {
   display: inline-block; }
 
