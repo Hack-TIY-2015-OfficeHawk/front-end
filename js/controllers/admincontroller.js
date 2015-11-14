@@ -1,25 +1,16 @@
-let AdminController = function($scope, $state, UserService, ConsoleService) {
+let AdminController = function($scope, $state, UserService, ConsoleService, $cookies) {
   
   $scope.logout = function () {
     UserService.userLogout();
   };  
 
-  $scope.addOrg = function (organization) {
-    UserService.addOrg(organization).then( (response) => {
-      console.log(response);
-      $state.reload();
-    });
-  };
-
   ConsoleService.getOrgList().then( (response) => {
-    console.log(response.data.employees);
+    console.log(response.data);
     $scope.employees = response.data.employees;
   });
 
-
-
 };
 
-AdminController.$inject = ['$scope', '$state', 'UserService', 'ConsoleService'];
+AdminController.$inject = ['$scope', '$state', 'UserService', 'ConsoleService', '$cookies'];
 
 export default AdminController;

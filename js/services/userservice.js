@@ -7,13 +7,13 @@ let UserService = function($http, SERVER, $cookies, $state) {
   this.checkAuth = function () {
     let token = $cookies.get('auth-Token');
 
-    token = SERVER.CONFIG.headers.auth_token;
-
     if (token) {
-      return $http.get(SERVER.URL + 'check' + SERVER.CONFIG);
+      SERVER.CONFIG.headers['auth-token'] = token;
     } else {
       $state.go('root.home');
     }
+
+    console.log(token);
   };
 
   // user login
