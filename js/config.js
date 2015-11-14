@@ -23,6 +23,7 @@ let config = function($stateProvider, $urlRouterProvider) {
     })
     .state('root.admin', {
       url: '/admin',
+      controller: 'AdminController',
       templateUrl: 'templates/admin.tpl.html'
     });
 

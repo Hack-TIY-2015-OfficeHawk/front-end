@@ -13,7 +13,7 @@ import UserService from './services/userservice';
 import ConsoleService from './services/consoleservice';
 
 angular
-  .module('app', ['ui.router'])
+  .module('app', ['ui.router', 'ngCookies'])
   .constant('SERVER', {
     URL: '',
     CONFIG: {
@@ -21,10 +21,10 @@ angular
     }
   })
   .config(config)
-  // .controlller('AdminController', AdminController)
-  .controller('HomeController', HomeController)
+  .controller('AdminController', AdminController)
+  // .controller('HomeController', HomeController)
   .controller('RegisterController', RegisterController)
-  // .controller('LoginController', LoginController)
+  .controller('LoginController', LoginController)
   .service('UserService', UserService)
   .service('ConsoleService', ConsoleService)
 ;

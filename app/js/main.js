@@ -24,6 +24,7 @@ var config = function config($stateProvider, $urlRouterProvider) {
     templateUrl: 'templates/login.tpl.html'
   }).state('root.admin', {
     url: '/admin',
+    controller: 'AdminController',
     templateUrl: 'templates/admin.tpl.html'
   });
 };
@@ -39,9 +40,14 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var AdminController = function AdminController($scope) {};
+var AdminController = function AdminController($scope, $state, UserService) {
 
-AdminController.$inject = ['$scope'];
+  $scope.logout = function () {
+    UserService.userLogout();
+  };
+};
+
+AdminController.$inject = ['$scope', '$state', 'UserService'];
 
 exports['default'] = AdminController;
 module.exports = exports['default'];
@@ -67,16 +73,15 @@ Object.defineProperty(exports, '__esModule', {
 });
 var LoginController = function LoginController($scope, $state, UserService) {
 
-  $scope.addUser = function (user) {
-    UserService.addUser(user).then(function (res) {
-      $scope.user = {};
+  $scope.login = function (user) {
+    UserService.userLogin(user).then(function (res) {
       console.log(res);
+      UserService.loginSuccess(res);
     });
-    $state.go('root.home');
   };
 };
 
-LoginController.$inject = ['$scope'];
+LoginController.$inject = ['$scope', '$state', 'UserService'];
 
 exports['default'] = LoginController;
 module.exports = exports['default'];
@@ -144,16 +149,14 @@ var _servicesConsoleservice = require('./services/consoleservice');
 
 var _servicesConsoleservice2 = _interopRequireDefault(_servicesConsoleservice);
 
-_angular2['default'].module('app', ['ui.router']).constant('SERVER', {
+_angular2['default'].module('app', ['ui.router', 'ngCookies']).constant('SERVER', {
   URL: '',
   CONFIG: {
     headers: {}
   }
-}).config(_config2['default'])
-// .controlller('AdminController', AdminController)
-.controller('HomeController', _controllersHomecontroller2['default']).controller('RegisterController', _controllersRegistercontroller2['default'])
-// .controller('LoginController', LoginController)
-.service('UserService', _servicesUserservice2['default']).service('ConsoleService', _servicesConsoleservice2['default']);
+}).config(_config2['default']).controller('AdminController', _controllersAdmincontroller2['default'])
+// .controller('HomeController', HomeController)
+.controller('RegisterController', _controllersRegistercontroller2['default']).controller('LoginController', _controllersLogincontroller2['default']).service('UserService', _servicesUserservice2['default']).service('ConsoleService', _servicesConsoleservice2['default']);
 
 },{"./config":1,"./controllers/admincontroller":2,"./controllers/homecontroller":3,"./controllers/logincontroller":4,"./controllers/registercontroller":5,"./services/consoleservice":7,"./services/userservice":8,"angular":13,"angular-cookies":10,"angular-ui-router":11}],7:[function(require,module,exports){
 'use strict';
@@ -207,8 +210,8 @@ var UserService = function UserService($http, SERVER, $cookies, $state) {
   // user logout
 
   this.userLogout = function () {
-    $cookies.remove('auth-Token');
-    SERVER.CONFIG.headers['X-AUTH-TOKEN'] = null;
+    // $cookies.remove('auth-Token');
+    // SERVER.CONFIG.headers['X-AUTH-TOKEN'] = null;
     $state.go('root.home');
   };
 
