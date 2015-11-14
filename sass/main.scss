@@ -2,6 +2,12 @@
 // See Readme for a list of supported ones
 @import "foundation";
 
+$black: #0D0D0D;
+$gray: #A6A6A6;
+$ltgray: #F2F2F2;
+$dkgreen: #3A5959;
+$teal: #008D73;
+
 body {
   background: #e2ebf3;
 }
@@ -16,10 +22,10 @@ body {
 // Admin Console
 
 .beacons-current {
-  border: 1px solid black;
+  border: 1px solid $black;
 }
 
 .employee-views {
   margin-top: 5%;
-  border: 1px solid black;
+  border: 1px solid $black;
 }
