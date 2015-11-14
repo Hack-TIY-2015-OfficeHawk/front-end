@@ -31,3 +31,21 @@ body {
   margin-top: 5%;
   border: 1px solid $black;
 }
+
+// logout button
+
+.logout-btn {
+  border: none;
+  margin-top: 10px;
+  background-color: $teal;
+  border-radius: 5px;
+  outline: none;
+  box-shadow: 0px 5px darken($dkgreen, 10%);
+}
+.logout-btn:hover {
+  background-color: lighten($dkgreen, 10%);
+}
+.logout-btn:active {
+  margin-top: 15px;
+  box-shadow: 0px 0px 0px $dkgreen;
+}
