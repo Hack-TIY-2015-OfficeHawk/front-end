@@ -39,15 +39,26 @@ let UserService = function($http, SERVER, $cookies, $state) {
   // register a new user/manager
   
   let User = function (obj) {
-    this.userName = obj.username;
-    this.email = obj.email;
+    this.fullname = obj.fullname;
+    this.username = obj.username;
     this.password = obj.password;
     this.organization = obj.organization;
   };
 
   this.addUser = function (obj) {
     let u = new User(obj);
-    return $http.post(url, u, PARSE.CONFIG);
+    return $http.post(url, u, SERVER.CONFIG);
+  };
+
+  // Add a new organization
+
+  let Organization = function (obj) {
+    this.name = obj.name;
+  };
+
+  this.addOrg = function (obj) {
+    let o = new Organization(obj);
+    return $http.post(url, o, SERVER.CONFIG);
   };
 
 };

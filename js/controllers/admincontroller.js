@@ -4,6 +4,13 @@ let AdminController = function($scope, $state, UserService) {
     UserService.userLogout();
   };  
 
+  $scope.addOrg = function (organization) {
+    UserService.addOrg(organization).then( (response) => {
+      console.log(response);
+      $state.reload();
+    });
+  };
+
 };
 
 AdminController.$inject = ['$scope', '$state', 'UserService'];

@@ -26,6 +26,9 @@ var config = function config($stateProvider, $urlRouterProvider) {
     url: '/admin',
     controller: 'AdminController',
     templateUrl: 'templates/admin.tpl.html'
+  }).state('root.singleorg', {
+    url: '/singleorg/:orgId',
+    templateUrl: 'templates/single_org.tpl.html'
   });
 };
 
@@ -44,6 +47,13 @@ var AdminController = function AdminController($scope, $state, UserService) {
 
   $scope.logout = function () {
     UserService.userLogout();
+  };
+
+  $scope.addOrg = function (organization) {
+    UserService.addOrg(organization).then(function (response) {
+      console.log(response);
+      $state.reload();
+    });
   };
 };
 
@@ -218,15 +228,26 @@ var UserService = function UserService($http, SERVER, $cookies, $state) {
   // register a new user/manager
 
   var User = function User(obj) {
-    this.userName = obj.username;
-    this.email = obj.email;
+    this.fullname = obj.fullname;
+    this.username = obj.username;
     this.password = obj.password;
     this.organization = obj.organization;
   };
 
   this.addUser = function (obj) {
     var u = new User(obj);
-    return $http.post(url, u, PARSE.CONFIG);
+    return $http.post(url, u, SERVER.CONFIG);
+  };
+
+  // Add a new organization
+
+  var Organization = function Organization(obj) {
+    this.name = obj.name;
+  };
+
+  this.addOrg = function (obj) {
+    var o = new Organization(obj);
+    return $http.post(url, o, SERVER.CONFIG);
   };
 };
 

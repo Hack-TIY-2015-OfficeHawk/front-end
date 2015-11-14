@@ -1,10 +1,10 @@
 <h3>Welcome, Overlord</h3>
 
 <form ng-submit="addUser(user)">
+  <input placeholder="Full Name" ng-model="user.fullname">
   <input placeholder="Username" ng-model="user.username">
-  <input placeholder="Email Address" ng-model="user.email">
-  <input placeholder="Password" ng-model="user.password">
-  <input placeholder="Organization" ng-model="user.organization">
+  <input type="password" placeholder="Password" ng-model="user.password">
+  <input placeholder="Organization Name" ng-model="user.organization">
   <button class="button">Register</button>
   <a href="#/">Cancel</a>
 </form>

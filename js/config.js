@@ -25,7 +25,12 @@ let config = function($stateProvider, $urlRouterProvider) {
       url: '/admin',
       controller: 'AdminController',
       templateUrl: 'templates/admin.tpl.html'
-    });
+    })
+    .state('root.singleorg', {
+      url: '/singleorg/:orgId',
+      templateUrl: 'templates/single_org.tpl.html'
+    })
+    ;
 
 };
 
