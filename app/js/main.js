@@ -40,7 +40,7 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var AdminController = function AdminController($scope, $state, UserService) {
+var AdminController = function AdminController($scope, $state, UserService, ConsoleService) {
 
   $scope.logout = function () {
     UserService.userLogout();
@@ -52,9 +52,14 @@ var AdminController = function AdminController($scope, $state, UserService) {
       $state.reload();
     });
   };
+
+  ConsoleService.getOrgList().then(function (response) {
+    console.log(response.data.employees);
+    $scope.employees = response.data.employees;
+  });
 };
 
-AdminController.$inject = ['$scope', '$state', 'UserService'];
+AdminController.$inject = ['$scope', '$state', 'UserService', 'ConsoleService'];
 
 exports['default'] = AdminController;
 module.exports = exports['default'];
@@ -173,7 +178,21 @@ _angular2['default'].module('app', ['ui.router', 'ngCookies']).constant('SERVER'
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var ConsoleService = function ConsoleService($http, SERVER, $state) {};
+var ConsoleService = function ConsoleService($http, SERVER, $state) {
+
+  console.log(SERVER);
+
+  // Get List of Employees within an org
+
+  this.getOrgList = function () {
+    return $http({
+      method: 'GET',
+      url: SERVER.URL + '/employees',
+      headers: SERVER.CONFIG.headers,
+      cache: true
+    });
+  };
+};
 
 ConsoleService.$inject = ['$http', 'SERVER', '$state'];
 
@@ -195,7 +214,7 @@ var UserService = function UserService($http, SERVER, $cookies, $state) {
   this.checkAuth = function () {
     var token = $cookies.get('auth-Token');
 
-    token = SERVER.CONFIG.headers['access_key'];
+    token = SERVER.CONFIG.headers.auth_token;
 
     if (token) {
       return $http.get(SERVER.URL + 'check' + SERVER.CONFIG);
@@ -211,8 +230,8 @@ var UserService = function UserService($http, SERVER, $cookies, $state) {
   };
 
   this.userSuccess = function (res) {
-    $cookies.put('auth-Token', res.data.access_key);
-    SERVER.CONFIG.headers['access_key'] = res.data.access_key;
+    $cookies.put('auth-Token', res.data.auth_token);
+    SERVER.CONFIG.headers.auth_token = res.data.auth_token;
     $state.go('root.admin');
   };
 
@@ -220,7 +239,7 @@ var UserService = function UserService($http, SERVER, $cookies, $state) {
 
   this.userLogout = function () {
     $cookies.remove('auth-Token');
-    SERVER.CONFIG.headers['access_key'] = null;
+    SERVER.CONFIG.headers.auth_token = null;
     $state.go('root.home');
   };
 
