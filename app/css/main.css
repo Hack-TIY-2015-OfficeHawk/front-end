@@ -6395,10 +6395,25 @@ body {
   width: 75%; }
 
 .beacons-current {
-  border: 1px solid black; }
+  border: 1px solid #0D0D0D; }
 
 .employee-views {
   margin-top: 5%;
-  border: 1px solid black; }
+  border: 1px solid #0D0D0D; }
+
+.logout-btn {
+  border: none;
+  margin-top: 10px;
+  background-color: #008D73;
+  border-radius: 5px;
+  outline: none;
+  box-shadow: 0px 5px #263a3a; }
+
+.logout-btn:hover {
+  background-color: #4e7878; }
+
+.logout-btn:active {
+  margin-top: 15px;
+  box-shadow: 0px 0px 0px #3A5959; }
 
 /*# sourceMappingURL=main.css.map */

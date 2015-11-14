@@ -2,6 +2,14 @@
 // See Readme for a list of supported ones
 @import "foundation";
 
+// Color Scheme
+
+$black: #0D0D0D;
+$gray: #A6A6A6;
+$ltgray: #F2F2F2;
+$dkgreen: #3A5959;
+$teal: #008D73;
+
 body {
   background: #e2ebf3;
 }
@@ -16,10 +24,28 @@ body {
 // Admin Console
 
 .beacons-current {
-  border: 1px solid black;
+  border: 1px solid $black;
 }
 
 .employee-views {
   margin-top: 5%;
-  border: 1px solid black;
+  border: 1px solid $black;
+}
+
+// logout button
+
+.logout-btn {
+  border: none;
+  margin-top: 10px;
+  background-color: $teal;
+  border-radius: 5px;
+  outline: none;
+  box-shadow: 0px 5px darken($dkgreen, 10%);
+}
+.logout-btn:hover {
+  background-color: lighten($dkgreen, 10%);
+}
+.logout-btn:active {
+  margin-top: 15px;
+  box-shadow: 0px 0px 0px $dkgreen;
 }
