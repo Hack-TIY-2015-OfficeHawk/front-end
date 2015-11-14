@@ -3,7 +3,7 @@ let LoginController = function($scope, $state, UserService) {
   $scope.login = function (user) {
     UserService.userLogin(user).then( (res) => {
       console.log(res);
-      UserService.loginSuccess(res);
+      UserService.userSuccess(res);
     });
   };
 

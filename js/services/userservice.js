@@ -19,12 +19,12 @@ let UserService = function($http, SERVER, $cookies, $state) {
   // user login
 
   this.userLogin = function (userObj) {
-    return $http.post(SERVER.URL + 'employees/login', userObj, SERVER.CONFIG);
+    return $http.post(SERVER.URL + '/employees/login', userObj, SERVER.CONFIG);
   };
 
   this.userSuccess = function (res) {
-    $cookies.put('auth-Token', res.data.auth_token);
-    SERVER.CONFIG.headers['access_key'] = res.data.auth_token;
+    $cookies.put('auth-Token', res.data.access_key);
+    SERVER.CONFIG.headers['access_key'] = res.data.access_key;
     $state.go('root.admin');
   };
 
