@@ -13,6 +13,7 @@ let config = function($stateProvider, $urlRouterProvider) {
     })
     .state('root.register', {
       url: '/register',
+      controller: 'RegisterController',
       templateUrl: 'templates/register.tpl.html'
     })
     .state('root.login', {

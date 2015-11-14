@@ -8,6 +8,8 @@ import HomeController from './controllers/homecontroller';
 import RegisterController from './controllers/registercontroller';
 import LoginController from './controllers/logincontroller';
 
+import UserService from './services/userservice';
+
 angular
   .module('app', ['ui.router'])
   .constant('PARSE', {
@@ -20,7 +22,9 @@ angular
     }
   })
   .config(config)
-  .controlller('AdminController', AdminController)
+  // .controlller('AdminController', AdminController)
   .controller('HomeController', HomeController)
   .controller('RegisterController', RegisterController)
-  .controller('LoginController', LoginController);
+  // .controller('LoginController', LoginController)
+  .service('UserService', UserService)
+;

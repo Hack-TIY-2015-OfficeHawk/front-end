@@ -16,6 +16,7 @@ var config = function config($stateProvider, $urlRouterProvider) {
     templateUrl: 'templates/home.tpl.html'
   }).state('root.register', {
     url: '/register',
+    controller: 'RegisterController',
     templateUrl: 'templates/register.tpl.html'
   }).state('root.login', {
     url: '/login',
@@ -76,9 +77,18 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var RegisterController = function RegisterController($scope) {};
+var RegisterController = function RegisterController($scope, $state, UserService) {
 
-RegisterController.$inject = ['$scope'];
+  $scope.addUser = function (user) {
+    UserService.addUser(user).then(function (res) {
+      $scope.user = {};
+      console.log(res);
+    });
+    $state.go('root.home');
+  };
+};
+
+RegisterController.$inject = ['$scope', '$state', 'UserService'];
 
 exports['default'] = RegisterController;
 module.exports = exports['default'];
@@ -114,6 +124,10 @@ var _controllersLogincontroller = require('./controllers/logincontroller');
 
 var _controllersLogincontroller2 = _interopRequireDefault(_controllersLogincontroller);
 
+var _servicesUserservice = require('./services/userservice');
+
+var _servicesUserservice2 = _interopRequireDefault(_servicesUserservice);
+
 _angular2['default'].module('app', ['ui.router']).constant('PARSE', {
   URL: 'https://api.parse.com/1/',
   CONFIG: {
@@ -122,9 +136,41 @@ _angular2['default'].module('app', ['ui.router']).constant('PARSE', {
       'X-Parse-REST-API-Key': 'rZOdKHikIYkpGw406yxkFyushZwBX54F9VufOKbR'
     }
   }
-}).config(_config2['default']).controlller('AdminController', _controllersAdmincontroller2['default']).controller('HomeController', _controllersHomecontroller2['default']).controller('RegisterController', _controllersRegistercontroller2['default']).controller('LoginController', _controllersLogincontroller2['default']);
+}).config(_config2['default'])
+// .controlller('AdminController', AdminController)
+.controller('HomeController', _controllersHomecontroller2['default']).controller('RegisterController', _controllersRegistercontroller2['default'])
+// .controller('LoginController', LoginController)
+.service('UserService', _servicesUserservice2['default']);
 
-},{"./config":1,"./controllers/admincontroller":2,"./controllers/homecontroller":3,"./controllers/logincontroller":4,"./controllers/registercontroller":5,"angular":9,"angular-ui-router":7}],7:[function(require,module,exports){
+},{"./config":1,"./controllers/admincontroller":2,"./controllers/homecontroller":3,"./controllers/logincontroller":4,"./controllers/registercontroller":5,"./services/userservice":7,"angular":10,"angular-ui-router":8}],7:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var UserService = function UserService($http, PARSE) {
+
+  var url = PARSE.URL + 'classes/employees';
+
+  var User = function User(obj) {
+    this.userName = obj.username;
+    this.email = obj.email;
+    this.password = obj.password;
+    this.organization = obj.organization;
+  };
+
+  this.addUser = function (obj) {
+    var u = new User(obj);
+    return $http.post(url, u, PARSE.CONFIG);
+  };
+};
+
+UserService.$inject = ['$http', 'PARSE'];
+
+exports['default'] = UserService;
+module.exports = exports['default'];
+
+},{}],8:[function(require,module,exports){
 /**
  * State-based routing for AngularJS
  * @version v0.2.15
@@ -4495,7 +4541,7 @@ angular.module('ui.router.state')
   .filter('isState', $IsStateFilter)
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.7
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -33400,11 +33446,11 @@ $provide.value("$locale", {
 })(window, document);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":8}]},{},[6])
+},{"./angular":9}]},{},[6])
 
 
 //# sourceMappingURL=main.js.map
