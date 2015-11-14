@@ -1,7 +1,5 @@
-let UserService = function($http, PARSE) {
+let UserService = function($http, SERVER, $cookies, $state) {
   
-  let url = PARSE.URL + 'classes/employees';
-
   let User = function (obj) {
     this.userName = obj.username;
     this.email = obj.email;
@@ -16,6 +14,6 @@ let UserService = function($http, PARSE) {
 
 };
 
-UserService.$inject = ['$http', 'PARSE'];
+UserService.$inject = ['$http', 'SERVER', '$cookies', '$state'];
 
 export default UserService;
