@@ -40,26 +40,19 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var AdminController = function AdminController($scope, $state, UserService, ConsoleService) {
+var AdminController = function AdminController($scope, $state, UserService, ConsoleService, $cookies) {
 
   $scope.logout = function () {
     UserService.userLogout();
   };
 
-  $scope.addOrg = function (organization) {
-    UserService.addOrg(organization).then(function (response) {
-      console.log(response);
-      $state.reload();
-    });
-  };
-
   ConsoleService.getOrgList().then(function (response) {
-    console.log(response.data.employees);
+    console.log(response.data);
     $scope.employees = response.data.employees;
   });
 };
 
-AdminController.$inject = ['$scope', '$state', 'UserService', 'ConsoleService'];
+AdminController.$inject = ['$scope', '$state', 'UserService', 'ConsoleService', '$cookies'];
 
 exports['default'] = AdminController;
 module.exports = exports['default'];
@@ -178,13 +171,15 @@ _angular2['default'].module('app', ['ui.router', 'ngCookies']).constant('SERVER'
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var ConsoleService = function ConsoleService($http, SERVER, $state) {
+var ConsoleService = function ConsoleService($http, SERVER, $state, UserService) {
 
   console.log(SERVER);
 
   // Get List of Employees within an org
 
   this.getOrgList = function () {
+    UserService.checkAuth();
+
     return $http({
       method: 'GET',
       url: SERVER.URL + '/employees',
@@ -194,7 +189,7 @@ var ConsoleService = function ConsoleService($http, SERVER, $state) {
   };
 };
 
-ConsoleService.$inject = ['$http', 'SERVER', '$state'];
+ConsoleService.$inject = ['$http', 'SERVER', '$state', 'UserService'];
 
 exports['default'] = ConsoleService;
 module.exports = exports['default'];
@@ -214,13 +209,13 @@ var UserService = function UserService($http, SERVER, $cookies, $state) {
   this.checkAuth = function () {
     var token = $cookies.get('auth-Token');
 
-    token = SERVER.CONFIG.headers.auth_token;
-
     if (token) {
-      return $http.get(SERVER.URL + 'check' + SERVER.CONFIG);
+      SERVER.CONFIG.headers['auth-token'] = token;
     } else {
       $state.go('root.home');
     }
+
+    console.log(token);
   };
 
   // user login
