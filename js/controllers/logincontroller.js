@@ -1,15 +1,14 @@
-let LoginController = function($scope, $state, UserService) {
-  
-  $scope.addUser = (user) => {
-    UserService.addUser(user).then( (res) => {
-      $scope.user = {};
+let LoginController = function($scope, $state, UserService, $cookies) {
+
+  $scope.login = function (user) {
+    UserService.userLogin(user).then( (res) => {
       console.log(res);
+      UserService.loginSuccess(res);
     });
-    $state.go('root.home');
   };
+  
 
-};
 
-LoginController.$inject = ['$scope'];
+LoginController.$inject = ['$scope', '$state', 'UserService', '$cookies'];
 
 export default LoginController;
