@@ -157,9 +157,11 @@ var _servicesConsoleservice = require('./services/consoleservice');
 var _servicesConsoleservice2 = _interopRequireDefault(_servicesConsoleservice);
 
 _angular2['default'].module('app', ['ui.router', 'ngCookies']).constant('SERVER', {
-  URL: '',
+  URL: 'https://officehawk.herokuapp.com',
   CONFIG: {
-    headers: {}
+    headers: {
+      'Content-Type': 'application/json'
+    }
   }
 }).config(_config2['default']).controller('AdminController', _controllersAdmincontroller2['default'])
 // .controller('HomeController', HomeController)
@@ -193,7 +195,7 @@ var UserService = function UserService($http, SERVER, $cookies, $state) {
   this.checkAuth = function () {
     var token = $cookies.get('auth-Token');
 
-    token = SERVER.CONFIG.headers['X-AUTH-TOKEN'];
+    token = SERVER.CONFIG.headers['access_key'];
 
     if (token) {
       return $http.get(SERVER.URL + 'check' + SERVER.CONFIG);
@@ -205,12 +207,12 @@ var UserService = function UserService($http, SERVER, $cookies, $state) {
   // user login
 
   this.userLogin = function (userObj) {
-    return $http.post(SERVER.URL + 'login', userObj, SERVER.CONFIG);
+    return $http.post(SERVER.URL + 'employees/login', userObj, SERVER.CONFIG);
   };
 
   this.userSuccess = function (res) {
     $cookies.put('auth-Token', res.data.auth_token);
-    SERVER.CONFIG.headers['X-AUTH-TOKEN'] = res.data.auth_token;
+    SERVER.CONFIG.headers['access_key'] = res.data.auth_token;
     $state.go('root.admin');
   };
 
@@ -218,22 +220,21 @@ var UserService = function UserService($http, SERVER, $cookies, $state) {
 
   this.userLogout = function () {
     $cookies.remove('auth-Token');
-    SERVER.CONFIG.headers['X-AUTH-TOKEN'] = null;
+    SERVER.CONFIG.headers['access_key'] = null;
     $state.go('root.home');
   };
 
   // register a new user/manager
 
   var User = function User(obj) {
-    this.fullname = obj.fullname;
     this.username = obj.username;
     this.password = obj.password;
-    this.organization = obj.organization;
+    this.name = obj.name;
   };
 
   this.addUser = function (obj) {
     var u = new User(obj);
-    return $http.post(url, u, SERVER.CONFIG);
+    return $http.post(SERVER.URL + '/organizations', u, SERVER.CONFIG);
   };
 };
 
