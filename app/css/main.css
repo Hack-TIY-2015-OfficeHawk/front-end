@@ -6395,17 +6395,19 @@ body {
   width: 100%; }
 
 .wrapper {
+  min-width: 990px;
+  max-width: 100%;
   width: 100%;
   height: 575px;
   overflow: hidden;
   position: relative;
-  margin: 0; }
+  margin: 0 auto; }
 
 .logo {
   position: absolute;
   bottom: 0;
   left: 50%;
-  margin-left: -505px; }
+  margin-left: -435px; }
 
 .beacons-current {
   border: 1px solid #0D0D0D; }
