@@ -26,8 +26,7 @@ let config = function($stateProvider, $urlRouterProvider) {
       controller: 'AdminController',
       templateUrl: 'templates/admin.tpl.html'
     })
-    
-    ;
+  ;
 
 };
 
