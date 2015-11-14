@@ -15,7 +15,7 @@ import ConsoleService from './services/consoleservice';
 angular
   .module('app', ['ui.router', 'ngCookies'])
   .constant('SERVER', {
-    URL: '',
+    URL: 'https://officehawk.herokuapp.com',
     CONFIG: {
       headers: {}
     }

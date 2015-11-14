@@ -160,7 +160,7 @@ var _servicesConsoleservice = require('./services/consoleservice');
 var _servicesConsoleservice2 = _interopRequireDefault(_servicesConsoleservice);
 
 _angular2['default'].module('app', ['ui.router', 'ngCookies']).constant('SERVER', {
-  URL: '',
+  URL: 'https://officehawk.herokuapp.com',
   CONFIG: {
     headers: {}
   }
