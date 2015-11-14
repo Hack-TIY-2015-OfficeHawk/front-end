@@ -1,5 +1,6 @@
 import angular from 'angular';
 import 'angular-ui-router';
+import 'angular-cookies';
 
 import config from './config';
 
@@ -9,16 +10,14 @@ import RegisterController from './controllers/registercontroller';
 import LoginController from './controllers/logincontroller';
 
 import UserService from './services/userservice';
+import ConsoleService from './services/consoleservice';
 
 angular
   .module('app', ['ui.router'])
-  .constant('PARSE', {
-    URL: 'https://api.parse.com/1/',
+  .constant('SERVER', {
+    URL: '',
     CONFIG: {
-      headers: {
-        'X-Parse-Application-Id': 'dq5iAypTudbRBQ8AVGoyrEr5dqf22zbLVCTCX8B4',
-        'X-Parse-REST-API-Key': 'rZOdKHikIYkpGw406yxkFyushZwBX54F9VufOKbR'
-      }
+      headers: {}
     }
   })
   .config(config)
@@ -27,4 +26,5 @@ angular
   .controller('RegisterController', RegisterController)
   // .controller('LoginController', LoginController)
   .service('UserService', UserService)
+  .service('ConsoleService', ConsoleService)
 ;
