@@ -31,8 +31,8 @@ let UserService = function($http, SERVER, $cookies, $state) {
   // user logout
 
   this.userLogout = function () {
-    $cookies.remove('auth-Token');
-    SERVER.CONFIG.headers['X-AUTH-TOKEN'] = null;
+    // $cookies.remove('auth-Token');
+    // SERVER.CONFIG.headers['X-AUTH-TOKEN'] = null;
     $state.go('root.home');
   };
 
