@@ -11,6 +11,7 @@ import RegisterController from './controllers/registercontroller';
 import LoginController from './controllers/logincontroller';
 import SingleController from './controllers/singlecontroller';
 import GraphicController from './controllers/graphiccontroller';
+import IndGraphicController from './controllers/individualgraphiccontroller';
 
 import UserService from './services/userservice';
 import ConsoleService from './services/consoleservice';
@@ -32,6 +33,7 @@ angular
   .controller('LoginController', LoginController)
   .controller('SingleController', SingleController)
   .controller('GraphicController', GraphicController)
+  .controller('IndGraphicController', IndGraphicController)
   .service('UserService', UserService)
   .service('ConsoleService', ConsoleService)
 ;

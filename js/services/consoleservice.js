@@ -16,6 +16,7 @@ let ConsoleService = function($http, SERVER, $state, UserService) {
   };
 
   this.getEmployee = function (empId) {
+    UserService.checkAuth();
     return $http({
       method: 'GET',
       url: SERVER.URL + '/employees/' + empId,

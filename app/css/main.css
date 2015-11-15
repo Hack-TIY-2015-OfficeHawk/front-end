@@ -8505,4 +8505,15 @@ h2 {
     .chart-wrapper .polararea-legend li {
       list-style: none; }
 
+.beacons-employee {
+  width: 50%;
+  float: right; }
+  .beacons-employee span {
+    font-weight: bold; }
+
+.pie-wrapper {
+  width: 550px; }
+  .pie-wrapper span {
+    font-weight: bold; }
+
 /*# sourceMappingURL=main.css.map */

@@ -5,34 +5,35 @@
 
 </div>
 
-<div class="beacons-current">
+<div class="beacons-employee">
+
+  <span>Activity Feed</span>
 
   <table>
     <thead>
       <tr>
-<!--         <th width="150px">Employee</th> -->
         <th width="75px">Zone</th>
         <th width="75px">State</th>
         <th width="100px">Time Start</th>
         <th width="100px">Duration</th>
       </tr>
+    </thead>  
       <tr ng-repeat="d in singleEmp">
-<!--         <td>{{ singleEmp.employee }}</td> -->
         <td>{{ d.beacon_id }}</td>
         <td>{{ d.state }}</td>
         <td>{{ d.duration | date: 'shortTime'}}</td>
         <td>{{ d.duration + ' secs'}}</td>
       </tr>
-    </thead>
   </table>
 
 </div>
 
-<!-- <div ng-controller="GraphicController">
-  <canvas id="base" class="chart-base" chart-type="type"
-chart-data="data" chart-labels="labels" chart-legend="true">
+<div class="pie-wrapper" ng-controller="IndGraphicController">
+  <span>Employee's Time</span>
+  <canvas id="pie" class="chart chart-pie"
+    chart-data="data" chart-labels="labels">
   </canvas> 
-</div> -->
+</div>
 
 
 
