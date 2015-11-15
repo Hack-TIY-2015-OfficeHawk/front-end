@@ -51,10 +51,10 @@ var AdminController = function AdminController($scope, $state, UserService, Cons
     $scope.employees = response.data.employees;
   });
 
-  ConsoleService.getBeacon().then(function (response) {
+  setInterval(ConsoleService.getBeacon().then(function (response) {
     console.log(response.data);
-    $scope.deez = response.data;
-  });
+    $scope.deez = response.data.alert;
+  }), 5000);
 };
 
 AdminController.$inject = ['$scope', '$state', 'UserService', 'ConsoleService', '$cookies'];

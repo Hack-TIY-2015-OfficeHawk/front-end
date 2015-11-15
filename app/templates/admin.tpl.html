@@ -23,13 +23,15 @@
           <th width="150px">Employee</th>
           <th width="150px">Zone</th>
           <th width="150px">State</th>
-          <th width="150px">Duration</th>
+          <th width="100px">Time Start</th>
+          <th width="100px">Duration</th>
         </tr>
         <tr ng-repeat="d in deez">
-          <td>{{ d.username }}</td>
-          <td>{{ d.uuid }}</td>
+          <td>{{ d.employee }}</td>
+          <td>{{ d.beacon_id }}</td>
           <td>{{ d.state }}</td>
-          <td>{{ d.duration }}</td>
+          <td>{{ d.duration | date: 'shortTime'}}</td>
+          <td>{{ d.duration + ' secs'}}</td>
         </tr>
       </thead>
     </table>

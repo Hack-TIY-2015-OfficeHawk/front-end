@@ -9,10 +9,11 @@ let AdminController = function($scope, $state, UserService, ConsoleService, $coo
     $scope.employees = response.data.employees;
   });
 
-  ConsoleService.getBeacon().then( (response) => {
-    console.log(response.data);
-    $scope.deez = response.data;
-  });
+  setInterval(
+    ConsoleService.getBeacon().then( (response) => {
+      console.log(response.data);
+      $scope.deez = response.data.alert;
+    }), 5000);
 
 };
 
