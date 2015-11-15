@@ -5,12 +5,14 @@
   <hr>
 </div>
 
-<div class="bodystuff">
+  <div class="bodystuff">
   <div class="employee-views">
 
   <p>Employees in your Organization</p>
   <ul ng-repeat="employee in employees">
-    <li><a class="emplink" href="#/single/{{ employee.id }}">{{ employee.username }}</a></li>
+    <li>
+    <img ng-src="{{employee.gravatar_url}}">
+    <a class="emplink" href="#/single/{{ employee.id }}">{{ employee.username }}</a></li>
   </ul>
 
   </div>
@@ -43,9 +45,23 @@
     <h3>Employee Location Trends</h3>
     <canvas id="base" class="chart-base" chart-type="type"
   chart-data="data" chart-labels="labels" chart-legend="false">
-  </canvas> 
+    </canvas> 
 
+    <canvas id="doughnut" class="chart chart-doughnut"
+  chart-data="data" chart-labels="labels">
+    </canvas> 
   </div>
+
+  <hr>
+<div class="heatdiv">
+  <p>HEATMAP</p>
+  <div class="heatmap">
+    <div class="fork"></div>
+    <div class="paddle"></div>
+    <div class="desk"></div>
+  </div>
+</div>
+
 
 
 
