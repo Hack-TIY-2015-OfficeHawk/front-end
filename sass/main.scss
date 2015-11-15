@@ -20,6 +20,16 @@ $teal: #008D73;
 .employee-views {
   display: inline-block;
   margin-top: 0;
+
+  li {
+    list-style: none;
+  }
+
+  img {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+  }
 }
 
 .beacons-current {
