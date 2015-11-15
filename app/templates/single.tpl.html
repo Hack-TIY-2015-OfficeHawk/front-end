@@ -1,16 +1,16 @@
 <div class="headerthing">
 
   <h3>Single Employee</h3>
-  <button class="button tiny logout-btn" ng-click="logout()">Log Out</button>
+    <a href="#/admin"><button class="button tiny logout-btn">Back</button></a>
 <hr>
 </div>
 
-<div class="beacons-current">
-  <span>Employee Activity</span>
+
+<div class="beacons-employee">
+  <span>Activity Feed</span>
   <table>
     <thead>
       <tr>
-<!--         <th width="150px">Employee</th> -->
         <th width="75px">Zone</th>
         <th width="75px">State</th>
         <th width="100px">Time Start</th>
@@ -18,7 +18,6 @@
       </tr>
     </thead>
       <tr ng-repeat="d in singleEmp">
-<!--         <td>{{ singleEmp.employee }}</td> -->
         <td>{{ d.beacon_id }}</td>
         <td>{{ d.state }}</td>
         <td>{{ d.duration | date: 'shortTime'}}</td>
@@ -28,11 +27,12 @@
 
 </div>
 
-<!-- <div ng-controller="GraphicController">
-  <canvas id="base" class="chart-base" chart-type="type"
-chart-data="data" chart-labels="labels" chart-legend="true">
+<div class="pie-wrapper" ng-controller="IndGraphicController">
+  <span>Employee's Time</span>
+  <canvas id="pie" class="chart chart-pie"
+    chart-data="data" chart-labels="labels">
   </canvas> 
-</div> -->
+</div>
 
 
 
