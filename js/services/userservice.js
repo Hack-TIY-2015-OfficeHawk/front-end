@@ -41,6 +41,7 @@ let UserService = function($http, SERVER, $cookies, $state) {
   let User = function (obj) {
     this.username = obj.username;
     this.password = obj.password;
+    this.email = obj.email;
     this.name = obj.name;
   };
 
