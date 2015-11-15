@@ -26,6 +26,10 @@ var config = function config($stateProvider, $urlRouterProvider) {
     url: '/admin',
     controller: 'AdminController',
     templateUrl: 'templates/admin.tpl.html'
+  }).state('root.single', {
+    url: '/single/:empId',
+    controller: 'SingleController',
+    templateUrl: 'templates/single.tpl.html'
   });
 };
 
@@ -40,7 +44,7 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var AdminController = function AdminController($scope, $state, UserService, ConsoleService, $cookies) {
+var AdminController = function AdminController($scope, $state, UserService, ConsoleService, $cookies, $interval) {
 
   $scope.logout = function () {
     UserService.userLogout();
@@ -51,13 +55,13 @@ var AdminController = function AdminController($scope, $state, UserService, Cons
     $scope.employees = response.data.employees;
   });
 
-  setInterval(ConsoleService.getBeacon().then(function (response) {
+  $interval(ConsoleService.getBeacon().then(function (response) {
     console.log(response.data);
     $scope.deez = response.data.alert;
-  }), 5000);
+  }), 1000);
 };
 
-AdminController.$inject = ['$scope', '$state', 'UserService', 'ConsoleService', '$cookies'];
+AdminController.$inject = ['$scope', '$state', 'UserService', 'ConsoleService', '$cookies', '$interval'];
 
 exports['default'] = AdminController;
 module.exports = exports['default'];
@@ -121,6 +125,25 @@ module.exports = exports['default'];
 },{}],6:[function(require,module,exports){
 'use strict';
 
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var SingleController = function SingleController($scope, $state, $stateParams, ConsoleService) {
+
+  ConsoleService.getEmployee($stateParams.empId).then(function (res) {
+    $scope.singleEmp = res.data;
+    console.log(res);
+  });
+};
+
+SingleController.$inject = ['$scope', '$state', '$stateParams', 'ConsoleService'];
+
+exports['default'] = SingleController;
+module.exports = exports['default'];
+
+},{}],7:[function(require,module,exports){
+'use strict';
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 var _angular = require('angular');
@@ -151,6 +174,10 @@ var _controllersLogincontroller = require('./controllers/logincontroller');
 
 var _controllersLogincontroller2 = _interopRequireDefault(_controllersLogincontroller);
 
+var _controllersSinglecontroller = require('./controllers/singlecontroller');
+
+var _controllersSinglecontroller2 = _interopRequireDefault(_controllersSinglecontroller);
+
 var _servicesUserservice = require('./services/userservice');
 
 var _servicesUserservice2 = _interopRequireDefault(_servicesUserservice);
@@ -168,9 +195,9 @@ _angular2['default'].module('app', ['ui.router', 'ngCookies']).constant('SERVER'
   }
 }).config(_config2['default']).controller('AdminController', _controllersAdmincontroller2['default'])
 // .controller('HomeController', HomeController)
-.controller('RegisterController', _controllersRegistercontroller2['default']).controller('LoginController', _controllersLogincontroller2['default']).service('UserService', _servicesUserservice2['default']).service('ConsoleService', _servicesConsoleservice2['default']);
+.controller('RegisterController', _controllersRegistercontroller2['default']).controller('LoginController', _controllersLogincontroller2['default']).controller('SingleController', _controllersSinglecontroller2['default']).service('UserService', _servicesUserservice2['default']).service('ConsoleService', _servicesConsoleservice2['default']);
 
-},{"./config":1,"./controllers/admincontroller":2,"./controllers/homecontroller":3,"./controllers/logincontroller":4,"./controllers/registercontroller":5,"./services/consoleservice":7,"./services/userservice":8,"angular":13,"angular-cookies":10,"angular-ui-router":11}],7:[function(require,module,exports){
+},{"./config":1,"./controllers/admincontroller":2,"./controllers/homecontroller":3,"./controllers/logincontroller":4,"./controllers/registercontroller":5,"./controllers/singlecontroller":6,"./services/consoleservice":8,"./services/userservice":9,"angular":14,"angular-cookies":11,"angular-ui-router":12}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -193,6 +220,15 @@ var ConsoleService = function ConsoleService($http, SERVER, $state, UserService)
     });
   };
 
+  this.getEmployee = function (empId) {
+    return $http({
+      method: 'GET',
+      url: SERVER.URL + '/employees/' + empId,
+      headers: SERVER.CONFIG.headers,
+      cache: false
+    });
+  };
+
   this.getBeacon = function () {
     return $http({
       method: 'GET',
@@ -208,7 +244,7 @@ ConsoleService.$inject = ['$http', 'SERVER', '$state', 'UserService'];
 exports['default'] = ConsoleService;
 module.exports = exports['default'];
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -271,7 +307,7 @@ UserService.$inject = ['$http', 'SERVER', '$cookies', '$state'];
 exports['default'] = UserService;
 module.exports = exports['default'];
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.7
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -594,11 +630,11 @@ angular.module('ngCookies').provider('$$cookieWriter', function $$CookieWriterPr
 
 })(window, window.angular);
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 require('./angular-cookies');
 module.exports = 'ngCookies';
 
-},{"./angular-cookies":9}],11:[function(require,module,exports){
+},{"./angular-cookies":10}],12:[function(require,module,exports){
 /**
  * State-based routing for AngularJS
  * @version v0.2.15
@@ -4969,7 +5005,7 @@ angular.module('ui.router.state')
   .filter('isState', $IsStateFilter)
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.7
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -33874,11 +33910,11 @@ $provide.value("$locale", {
 })(window, document);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":12}]},{},[6])
+},{"./angular":13}]},{},[7])
 
 
 //# sourceMappingURL=main.js.map

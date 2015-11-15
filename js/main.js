@@ -8,6 +8,7 @@ import AdminController from './controllers/admincontroller';
 import HomeController from './controllers/homecontroller';
 import RegisterController from './controllers/registercontroller';
 import LoginController from './controllers/logincontroller';
+import SingleController from './controllers/singlecontroller';
 
 import UserService from './services/userservice';
 import ConsoleService from './services/consoleservice';
@@ -27,6 +28,7 @@ angular
   // .controller('HomeController', HomeController)
   .controller('RegisterController', RegisterController)
   .controller('LoginController', LoginController)
+  .controller('SingleController', SingleController)
   .service('UserService', UserService)
   .service('ConsoleService', ConsoleService)
 ;

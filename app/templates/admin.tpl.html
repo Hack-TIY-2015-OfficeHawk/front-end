@@ -10,7 +10,7 @@
 
   <p>Employees in your Organization</p>
   <ul ng-repeat="employee in employees">
-    <li>{{ employee.username }}</li>
+    <li><a class="emplink" href="#/single/{{ employee.employee_id }}">{{ employee.username }}</a></li>
   </ul>
 
   </div>
