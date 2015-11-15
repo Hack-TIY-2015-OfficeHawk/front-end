@@ -1,5 +1,8 @@
 @import "foundation";
 @import "font-awesome";
+@import "foundation/components/tables";
+
+$include-html-table-classes: $include-html-classes;
 
 // Color Scheme
 
@@ -88,7 +91,7 @@ h2 {
 }
 
 .beacons-current {
-  border: 1px solid $black;
+  // border: 1px solid $black;
   height: 384px;
   width: 80%;
   float: right;
@@ -102,7 +105,10 @@ h2 {
   float: left;
   height: 384px;
   width: 18%;
-  border: 1px solid $black;
+  border: 1px solid $gray;
+  border-left: none;
+  border-top: none;
+  border-bottom: none;
 }
 
 // logout button
