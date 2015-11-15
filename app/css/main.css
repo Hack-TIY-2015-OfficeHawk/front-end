@@ -8414,6 +8414,12 @@ th.hide-for-touch {
 .employee-views {
   display: inline-block;
   margin-top: 0; }
+  .employee-views li {
+    list-style: none; }
+  .employee-views img {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; }
 
 .beacons-current {
   display: inline-block; }

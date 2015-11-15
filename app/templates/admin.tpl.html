@@ -10,7 +10,9 @@
 
   <p>Employees in your Organization</p>
   <ul ng-repeat="employee in employees">
-    <li><a class="emplink" href="#/single/{{ employee.id }}">{{ employee.username }}</a></li>
+    <li>
+    <img ng-src="{{employee.gravatar_url}}">
+    <a class="emplink" href="#/single/{{ employee.id }}">{{ employee.username }}</a></li>
   </ul>
 
   </div>
