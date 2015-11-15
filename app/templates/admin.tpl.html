@@ -1,8 +1,8 @@
 <div class="headerthing">
 
-  <h2>Welcome, overlord.</h2>
+  <h3>Admin Console</h3>
   <button class="button tiny logout-btn" ng-click="logout()">Log Out</button>
-
+  <hr>
 </div>
 
 <div class="bodystuff">
@@ -16,32 +16,35 @@
   </div>
 
   <div class="beacons-current">
-
+    <span>Employee Activity</span>
     <table>
       <thead>
         <tr>
           <th width="150px">Employee</th>
-          <th width="150px">Zone</th>
-          <th width="150px">State</th>
+          <th width="75px">Zone</th>
+          <th width="75px">State</th>
           <th width="100px">Time Start</th>
           <th width="100px">Duration</th>
         </tr>
-        <tr ng-repeat="d in deez">
+      </thead>
+        <tr ng-repeat="d in deez | orderBy: '+duration'">
           <td>{{ d.employee }}</td>
           <td>{{ d.beacon_id }}</td>
           <td>{{ d.state }}</td>
           <td>{{ d.duration | date: 'shortTime'}}</td>
           <td>{{ d.duration + ' secs'}}</td>
         </tr>
-      </thead>
     </table>
-
   </div>
 
-  <div ng-controller="GraphicController">
+  <hr>
+
+  <div class="chart-wrapper" ng-controller="GraphicController">
+    <h3>Employee Location Trends</h3>
     <canvas id="base" class="chart-base" chart-type="type"
-  chart-data="data" chart-labels="labels" chart-legend="true">
-    </canvas> 
+  chart-data="data" chart-labels="labels" chart-legend="false">
+  </canvas> 
+
   </div>
 
 

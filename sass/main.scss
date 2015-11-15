@@ -1,5 +1,8 @@
 @import "foundation";
 @import "font-awesome";
+@import "foundation/components/tables";
+
+$include-html-table-classes: $include-html-classes;
 
 // Color Scheme
 
@@ -16,14 +19,29 @@ $teal: #008D73;
 
 .beacons-current {
   display: inline-block;
+
+  span {
+    font-weight: bold;
+    color: $dkgreen;
+  }
 }
 
 .headerthing {
   display: block;
+
+  h3 {
+    float: left;
+  }
 }
 
 .bodystuff {
   display: block;
+
+  p { 
+    font-weight: bold;
+    color: $dkgreen;
+    font-size: 15px;
+  }
 }
 
 body {
@@ -73,12 +91,24 @@ h2 {
 }
 
 .beacons-current {
-  border: 1px solid $black;
+  // border: 1px solid $black;
+  height: 384px;
+  width: 80%;
+  float: right;
+
+  table {
+    width: 1010px;
+  }
 }
 
 .employee-views {
-  margin-top: 5%;
-  border: 1px solid $black;
+  float: left;
+  height: 384px;
+  width: 18%;
+  border: 1px solid $gray;
+  border-left: none;
+  border-top: none;
+  border-bottom: none;
 }
 
 // logout button
@@ -100,16 +130,26 @@ h2 {
   box-shadow: 0px 0px 0px $dkgreen;
 }
 
-//SCSS for Admin View Tables
 
-table, th , td  {
-  border: 1px solid grey;
-  border-collapse: collapse;
-  padding: 5px;
+// Chart Styling
+
+.chart-wrapper {
+  margin: 15px auto;
+  width: 800px;
+  border: 1px solid $black;
+  border-radius: 3px;
+
+  h3 {
+    text-align: center;
+  }
+
+  .polararea-legend {
+    text-align: center;
+
+    li {
+      list-style: none;
+    }
+  }
+
 }
-table tr:nth-child(odd) {
-  background-color: #f1f1f1;
-}
-table tr:nth-child(even) {
-  background-color: #ffffff;
-}
+

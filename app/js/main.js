@@ -102,7 +102,7 @@ var GraphicController = function GraphicController($scope, ConsoleService) {
 
     console.log(b1, b2, b3);
 
-    $scope.labels = ['Beacon1', 'Beacon2', 'Beacon3'];
+    $scope.labels = ['Kitchen', 'Ping Pong Table', 'Workspace'];
     $scope.data = [b1, b2, b3];
     $scope.type = 'PolarArea';
 
@@ -207,8 +207,8 @@ Object.defineProperty(exports, '__esModule', {
 var SingleController = function SingleController($scope, $state, $stateParams, ConsoleService) {
 
   ConsoleService.getEmployee($stateParams.empId).then(function (res) {
-    $scope.singleEmp = res.data;
-    console.log(res);
+    $scope.singleEmp = res.data.alert;
+    console.log(res.data.alert);
   });
 };
 

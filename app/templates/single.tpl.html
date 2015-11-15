@@ -1,0 +1,38 @@
+<div class="headerthing">
+
+  <h3>Single Employee</h3>
+  <button class="button tiny logout-btn" ng-click="logout()">Log Out</button>
+<hr>
+</div>
+
+<div class="beacons-current">
+  <span>Employee Activity</span>
+  <table>
+    <thead>
+      <tr>
+<!--         <th width="150px">Employee</th> -->
+        <th width="75px">Zone</th>
+        <th width="75px">State</th>
+        <th width="100px">Time Start</th>
+        <th width="100px">Duration</th>
+      </tr>
+    </thead>
+      <tr ng-repeat="d in singleEmp">
+<!--         <td>{{ singleEmp.employee }}</td> -->
+        <td>{{ d.beacon_id }}</td>
+        <td>{{ d.state }}</td>
+        <td>{{ d.duration | date: 'shortTime'}}</td>
+        <td>{{ d.duration + ' secs'}}</td>
+      </tr>
+  </table>
+
+</div>
+
+<!-- <div ng-controller="GraphicController">
+  <canvas id="base" class="chart-base" chart-type="type"
+chart-data="data" chart-labels="labels" chart-legend="true">
+  </canvas> 
+</div> -->
+
+
+
