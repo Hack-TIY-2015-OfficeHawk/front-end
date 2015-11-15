@@ -8407,6 +8407,10 @@ th.hide-for-touch {
 .fa-fonticons:before {
   content: ""; }
 
+.logininput {
+  width: 30%;
+  margin: 15px auto; }
+
 .employee-views {
   display: inline-block;
   margin-top: 0; }
@@ -8497,15 +8501,22 @@ h2 {
 
 .chart-wrapper {
   margin: 15px auto;
-  width: 800px;
-  border: 1px solid #0D0D0D;
-  border-radius: 3px; }
+  width: 1000px;
+  border: 1px solid #A6A6A6;
+  border-radius: 3px;
+  text-align: center; }
   .chart-wrapper h3 {
     text-align: center; }
   .chart-wrapper .polararea-legend {
     text-align: center; }
     .chart-wrapper .polararea-legend li {
       list-style: none; }
+
+.chart-container {
+  display: inline-block;
+  width: 600px;
+  margin-left: -100px;
+  margin-right: -100px; }
 
 .beacons-employee {
   width: 50%;
