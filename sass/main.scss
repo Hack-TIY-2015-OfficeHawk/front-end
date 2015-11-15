@@ -26,8 +26,8 @@ $teal: #008D73;
   }
 
   img {
-    width: 25px;
-    height: 25px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
   }
 }
@@ -193,4 +193,43 @@ h2 {
     font-weight: bold;
   }
 }
+
+.emptime {
+  display: block;
+}
+
+.heatdiv {
+  text-align: center;
+}
+
+.heatmap {
+  margin: 0 auto;
+  margin-bottom: 50px;
+  border: 1px solid $gray;
+  width: 1000px;
+  height: 400px;
+  background-image: url(../images/heatmap.png);
+}
+
+// .fork {
+//   width: 300px;
+//   height: 100%;
+//   background-repeat: no-repeat;
+//   background-image: url(../images/noun_70200_cc.png);
+//   display: inline-block;
+// }
+// .paddle {
+//   width: 300px;
+//   height: 100%;
+//   background-repeat: no-repeat;
+//   // background-image: url(../images/noun_189643_cc.png);
+//   display: inline-block;
+// }
+// .desk {
+//   width: 300px;
+//   height: 100%;
+//   background-repeat: no-repeat;
+//   // background-image: url(../images/noun_219161_cc.png);
+//   display: inline-block;
+// }
 
