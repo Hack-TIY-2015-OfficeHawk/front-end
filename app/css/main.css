@@ -8449,7 +8449,7 @@ body {
   position: absolute;
   bottom: 0;
   left: 50%;
-  margin-left: -435px; }
+  margin-left: -426px; }
 
 .fa-home {
   font-size: 18px; }
@@ -8495,6 +8495,18 @@ h2 {
   margin-top: 15px;
   box-shadow: 0px 0px 0px #3A5959; }
 
+<<<<<<< HEAD
+table, th, td {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px; }
+
+table tr:nth-child(odd) {
+  background-color: #f1f1f1; }
+
+table tr:nth-child(even) {
+  background-color: #ffffff; }
+=======
 .chart-wrapper {
   margin: 15px auto;
   width: 800px;
@@ -8506,5 +8518,6 @@ h2 {
     text-align: center; }
     .chart-wrapper .polararea-legend li {
       list-style: none; }
+>>>>>>> master
 
 /*# sourceMappingURL=main.css.map */

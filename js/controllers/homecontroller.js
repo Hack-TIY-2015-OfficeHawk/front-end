@@ -1,9 +1,36 @@
-let HomeController = function($scope) {
+import $ from 'jquery';
+
+let HomeController = function($scope, $state, $timeout) {
   
-  
+
+  $scope.playlogin = function() {
+      
+      let a = document.getElementById('loginsound');
+      a.play();
+      $timeout(function() {
+        $state.go('root.login');
+      }, 4000);
+    };
+
+
+  $scope.playregister = function() {
+      let a = document.getElementById('loginsound');
+      a.play();
+      $timeout(function() {
+        $state.go('root.register');
+      }, 4000);
+  };
+
 
 };
 
-HomeController.$inject = ['$scope'];
+  
+  
+HomeController.$inject = ['$scope', '$state', '$timeout'];
 
 export default HomeController;
+
+
+
+
+
