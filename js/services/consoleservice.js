@@ -33,9 +33,6 @@ let ConsoleService = function($http, SERVER, $state, UserService) {
     });
   };
 
-
-  
-
 };
 
 ConsoleService.$inject = ['$http', 'SERVER', '$state', 'UserService'];

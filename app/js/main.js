@@ -181,8 +181,8 @@ Object.defineProperty(exports, '__esModule', {
 var SingleController = function SingleController($scope, $state, $stateParams, ConsoleService) {
 
   ConsoleService.getEmployee($stateParams.empId).then(function (res) {
-    $scope.singleEmp = res.data;
-    console.log(res);
+    $scope.singleEmp = res.data.alert;
+    console.log(res.data.alert);
   });
 };
 
