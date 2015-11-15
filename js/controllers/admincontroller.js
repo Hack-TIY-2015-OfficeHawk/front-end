@@ -1,4 +1,4 @@
-let AdminController = function($scope, $state, UserService, ConsoleService, $cookies) {
+let AdminController = function($scope, $state, UserService, ConsoleService, $cookies, $interval) {
   
   $scope.logout = function () {
     UserService.userLogout();
@@ -9,13 +9,13 @@ let AdminController = function($scope, $state, UserService, ConsoleService, $coo
     $scope.employees = response.data.employees;
   });
 
-  ConsoleService.getBeacon().then( (response) => {
+  $interval(ConsoleService.getBeacon().then( (response) => {
     console.log(response.data);
-    $scope.deez = response.data;
-  });
+    $scope.deez = response.data.alert;
+  }), 1000);
 
 };
 
-AdminController.$inject = ['$scope', '$state', 'UserService', 'ConsoleService', '$cookies'];
+AdminController.$inject = ['$scope', '$state', 'UserService', 'ConsoleService', '$cookies', '$interval'];
 
 export default AdminController;

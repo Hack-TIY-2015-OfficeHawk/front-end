@@ -10,7 +10,7 @@
 
   <p>Employees in your Organization</p>
   <ul ng-repeat="employee in employees">
-    <li>{{ employee.username }}</li>
+    <li><a class="emplink" href="#/single/{{ employee.id }}">{{ employee.username }}</a></li>
   </ul>
 
   </div>
@@ -23,17 +23,25 @@
           <th width="150px">Employee</th>
           <th width="150px">Zone</th>
           <th width="150px">State</th>
-          <th width="150px">Duration</th>
+          <th width="100px">Time Start</th>
+          <th width="100px">Duration</th>
         </tr>
         <tr ng-repeat="d in deez">
-          <td>{{ d.username }}</td>
-          <td>{{ d.uuid }}</td>
+          <td>{{ d.employee }}</td>
+          <td>{{ d.beacon_id }}</td>
           <td>{{ d.state }}</td>
-          <td>{{ d.duration }}</td>
+          <td>{{ d.duration | date: 'shortTime'}}</td>
+          <td>{{ d.duration + ' secs'}}</td>
         </tr>
       </thead>
     </table>
 
+  </div>
+
+  <div ng-controller="GraphicController">
+    <canvas id="base" class="chart-base" chart-type="type"
+  chart-data="data" chart-labels="labels" chart-legend="true">
+    </canvas> 
   </div>
 
 

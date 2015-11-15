@@ -15,6 +15,15 @@ let ConsoleService = function($http, SERVER, $state, UserService) {
     });
   };
 
+  this.getEmployee = function (empId) {
+    return $http({
+      method: 'GET',
+      url: SERVER.URL + '/employees/' + empId,
+      headers: SERVER.CONFIG.headers,
+      cache: false
+    });
+  };
+
   this.getBeacon = function() {
     return $http({
       method: 'GET',
@@ -23,6 +32,8 @@ let ConsoleService = function($http, SERVER, $state, UserService) {
       cache: false
     });
   };
+
+
   
 
 };
