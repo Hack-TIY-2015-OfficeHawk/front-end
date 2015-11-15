@@ -9,6 +9,7 @@ let config = function($stateProvider, $urlRouterProvider) {
     })
     .state('root.home', {
       url: '/',
+      controller: 'HomeController',
       templateUrl: 'templates/home.tpl.html'
     })
     .state('root.register', {
@@ -26,6 +27,7 @@ let config = function($stateProvider, $urlRouterProvider) {
       controller: 'AdminController',
       templateUrl: 'templates/admin.tpl.html'
     })
+  
     .state('root.single', {
       url: '/single/:empId',
       controller: 'SingleController',

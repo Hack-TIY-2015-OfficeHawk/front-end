@@ -27,7 +27,7 @@ angular
   })
   .config(config)
   .controller('AdminController', AdminController)
-  // .controller('HomeController', HomeController)
+  .controller('HomeController', HomeController)
   .controller('RegisterController', RegisterController)
   .controller('LoginController', LoginController)
   .controller('SingleController', SingleController)
