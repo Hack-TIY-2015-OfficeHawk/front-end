@@ -50,6 +50,11 @@ var AdminController = function AdminController($scope, $state, UserService, Cons
     console.log(response.data);
     $scope.employees = response.data.employees;
   });
+
+  ConsoleService.getBeacon().then(function (response) {
+    console.log(response.data);
+    $scope.deez = response.data;
+  });
 };
 
 AdminController.$inject = ['$scope', '$state', 'UserService', 'ConsoleService', '$cookies'];
@@ -185,6 +190,15 @@ var ConsoleService = function ConsoleService($http, SERVER, $state, UserService)
       url: SERVER.URL + '/employees',
       headers: SERVER.CONFIG.headers,
       cache: true
+    });
+  };
+
+  this.getBeacon = function () {
+    return $http({
+      method: 'GET',
+      url: SERVER.URL + '/alerts',
+      headers: SERVER.CONFIG.headers,
+      cache: false
     });
   };
 };

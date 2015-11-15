@@ -9,6 +9,23 @@ $ltgray: #F2F2F2;
 $dkgreen: #3A5959;
 $teal: #008D73;
 
+.employee-views {
+  display: inline-block;
+  margin-top: 0;
+}
+
+.beacons-current {
+  display: inline-block;
+}
+
+.headerthing {
+  display: block;
+}
+
+.bodystuff {
+  display: block;
+}
+
 body {
   background: $ltgray;
 }

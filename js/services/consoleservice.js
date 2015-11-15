@@ -14,6 +14,15 @@ let ConsoleService = function($http, SERVER, $state, UserService) {
       cache: true
     });
   };
+
+  this.getBeacon = function() {
+    return $http({
+      method: 'GET',
+      url: SERVER.URL + '/alerts',
+      headers: SERVER.CONFIG.headers,
+      cache: false
+    });
+  };
   
 
 };

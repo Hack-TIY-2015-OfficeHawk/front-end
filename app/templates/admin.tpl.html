@@ -1,27 +1,40 @@
-<h2>Welcome, overlord.</h2>
+<div class="headerthing">
 
-<button class="button tiny logout-btn" ng-click="logout()">Log Out</button>
-
-<div class="beacons-current">
-
-
-  <ul class="small-block-grid-3">
-    <li>Beacon 1</li>
-    <li>Beacon 2</li>
-    <li>Beacon 3</li>
-  </ul>
+  <h2>Welcome, overlord.</h2>
+  <button class="button tiny logout-btn" ng-click="logout()">Log Out</button>
 
 </div>
 
-<div class="employee-views">
+<div class="bodystuff">
+  <div class="employee-views">
 
-<h3>Employees in your Organization</h3>
-
+  <p>Employees in your Organization</p>
   <ul ng-repeat="employee in employees">
     <li>{{ employee.username }}</li>
   </ul>
 
-</div>
+  </div>
+
+  <div class="beacons-current">
+
+    <table>
+      <thead>
+        <tr>
+          <th width="150px">Employee</th>
+          <th width="150px">Zone</th>
+          <th width="150px">State</th>
+          <th width="150px">Duration</th>
+        </tr>
+        <tr ng-repeat="d in deez">
+          <td>{{ d.username }}</td>
+          <td>{{ d.uuid }}</td>
+          <td>{{ d.state }}</td>
+          <td>{{ d.duration }}</td>
+        </tr>
+      </thead>
+    </table>
+
+  </div>
 
 
 
