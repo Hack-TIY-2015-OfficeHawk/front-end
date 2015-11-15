@@ -9,6 +9,11 @@ let AdminController = function($scope, $state, UserService, ConsoleService, $coo
     $scope.employees = response.data.employees;
   });
 
+  ConsoleService.getBeacon().then( (response) => {
+    console.log(response.data);
+    $scope.deez = response.data;
+  });
+
 };
 
 AdminController.$inject = ['$scope', '$state', 'UserService', 'ConsoleService', '$cookies'];
