@@ -13,6 +13,7 @@ var config = function config($stateProvider, $urlRouterProvider) {
     templateUrl: 'templates/layout.tpl.html'
   }).state('root.home', {
     url: '/',
+    controller: 'HomeController',
     templateUrl: 'templates/home.tpl.html'
   }).state('root.register', {
     url: '/register',
@@ -129,32 +130,29 @@ var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-var HomeController = function HomeController($scope) {
-  var mouseoversound = createsoundbite('images/Screaming Hawk 2-SoundBible.com-1003225740.mp3');
-  var clicksound = createsoundbite('click.mp3');
+var HomeController = function HomeController($scope, $state, $timeout) {
+
+  $scope.playlogin = function () {
+
+    var a = document.getElementById('loginsound');
+    a.play();
+    $timeout(function () {
+      $state.go('root.login');
+    }, 4000);
+  };
+
+  $scope.playregister = function () {
+    var a = document.getElementById('loginsound');
+    a.play();
+    $timeout(function () {
+      $state.go('root.register');
+    }, 4000);
+  };
 };
 
-// var audio = $("images/Screaming Hawk 2-SoundBible.com-1003225740.mp3")[0];
-//   $(".button").mouseenter(function() {
-//   audio.play();
-//  });
-
-HomeController.$inject = ['$scope'];
+HomeController.$inject = ['$scope', '$state', '$timeout'];
 
 exports['default'] = HomeController;
-
-// function createsoundbite(sound){
-//   var html5audio=document.createElement('audio');
-//     }
-//     html5audio.load()
-//     html5audio.playclip=function() {
-//       html5audio.currentTime=0
-//       html5audio.play()
-//     };
-//     return html5audio
-//   };
-
-// };
 module.exports = exports['default'];
 
 },{"jquery":18}],5:[function(require,module,exports){
@@ -277,9 +275,7 @@ _angular2['default'].module('app', ['ui.router', 'ngCookies', 'chart.js']).const
       'Content-Type': 'application/json'
     }
   }
-}).config(_config2['default']).controller('AdminController', _controllersAdmincontroller2['default'])
-// .controller('HomeController', HomeController)
-.controller('RegisterController', _controllersRegistercontroller2['default']).controller('LoginController', _controllersLogincontroller2['default']).controller('SingleController', _controllersSinglecontroller2['default']).controller('GraphicController', _controllersGraphiccontroller2['default']).service('UserService', _servicesUserservice2['default']).service('ConsoleService', _servicesConsoleservice2['default']);
+}).config(_config2['default']).controller('AdminController', _controllersAdmincontroller2['default']).controller('HomeController', _controllersHomecontroller2['default']).controller('RegisterController', _controllersRegistercontroller2['default']).controller('LoginController', _controllersLogincontroller2['default']).controller('SingleController', _controllersSinglecontroller2['default']).controller('GraphicController', _controllersGraphiccontroller2['default']).service('UserService', _servicesUserservice2['default']).service('ConsoleService', _servicesConsoleservice2['default']);
 
 },{"./config":1,"./controllers/admincontroller":2,"./controllers/graphiccontroller":3,"./controllers/homecontroller":4,"./controllers/logincontroller":5,"./controllers/registercontroller":6,"./controllers/singlecontroller":7,"./services/consoleservice":9,"./services/userservice":10,"angular":17,"angular-chart.js":11,"angular-cookies":14,"angular-ui-router":15}],9:[function(require,module,exports){
 'use strict';

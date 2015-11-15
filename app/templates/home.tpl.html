@@ -4,14 +4,14 @@
 </div> 
   
 
-  <div class="home-btns">
+  <div class="home-btns" ng-controller="HomeController">
    
-    <!-- <audio controls>
-      <source src="images/Screaming Hawk 2-SoundBible.com-1003225740.mp3" type="audio/mpeg">
-    </audio> -->
+    <audio id="loginsound">
+      <source src="images/Screaming Hawk 2-SoundBible.com-1003225740.mp3">
+    </audio>
     <!-- //<a href="#" onMouseover="uniquevar.playclip()"></div>/a> -->
 
-    <a href="#/login" onMouseover="uniquevar.playclip()"><button class="button secondary">Login</button></a>
-    <a href="#/register" onMouseover="uniquevar.playclip()"><button class="button secondary">Register</button></a>
+    <button class="button secondary" ng-click="playlogin()">Login</button>
+    <button class="button secondary" ng-click="playregister()">Register</button>
   
   </div>
