@@ -27,7 +27,7 @@ let GraphicController = function($scope, ConsoleService) {
 
     console.log(b1, b2, b3);
 
-    $scope.labels = ['Beacon1', 'Beacon2', 'Beacon3'];
+    $scope.labels = ['Kitchen', 'Ping Pong Table', 'Workspace'];
     $scope.data = [b1, b2, b3];
     $scope.type = 'PolarArea';
 

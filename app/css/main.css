@@ -8413,12 +8413,21 @@ th.hide-for-touch {
 
 .beacons-current {
   display: inline-block; }
+  .beacons-current span {
+    font-weight: bold;
+    color: #3A5959; }
 
 .headerthing {
   display: block; }
+  .headerthing h3 {
+    float: left; }
 
 .bodystuff {
   display: block; }
+  .bodystuff p {
+    font-weight: bold;
+    color: #3A5959;
+    font-size: 15px; }
 
 body {
   background: #F2F2F2; }
@@ -8455,10 +8464,17 @@ h2 {
   display: inline-block; }
 
 .beacons-current {
-  border: 1px solid #0D0D0D; }
+  border: 1px solid #0D0D0D;
+  height: 384px;
+  width: 80%;
+  float: right; }
+  .beacons-current table {
+    width: 1010px; }
 
 .employee-views {
-  margin-top: 5%;
+  float: left;
+  height: 384px;
+  width: 18%;
   border: 1px solid #0D0D0D; }
 
 .logout-btn {
@@ -8476,5 +8492,17 @@ h2 {
 .logout-btn:active {
   margin-top: 15px;
   box-shadow: 0px 0px 0px #3A5959; }
+
+.chart-wrapper {
+  margin: 15px auto;
+  width: 800px;
+  border: 1px solid #0D0D0D;
+  border-radius: 3px; }
+  .chart-wrapper h3 {
+    text-align: center; }
+  .chart-wrapper .polararea-legend {
+    text-align: center; }
+    .chart-wrapper .polararea-legend li {
+      list-style: none; }
 
 /*# sourceMappingURL=main.css.map */
