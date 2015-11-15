@@ -155,7 +155,50 @@ HomeController.$inject = ['$scope', '$state', '$timeout'];
 exports['default'] = HomeController;
 module.exports = exports['default'];
 
-},{"jquery":18}],5:[function(require,module,exports){
+},{"jquery":19}],5:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var IndGraphicController = function IndGraphicController($scope, $stateParams, ConsoleService) {
+
+  ConsoleService.getEmployee($stateParams.empId).then(function (res) {
+    $scope.empAlerts = res.data.alert;
+    console.log($scope.empAlerts);
+
+    $scope.beacon1 = [];
+    $scope.beacon2 = [];
+    $scope.beacon3 = [];
+
+    angular.forEach($scope.empAlerts, function (alert) {
+
+      if (alert.beacon_minor === "1000") {
+        $scope.beacon1.push(alert);
+      } else if (alert.beacon_minor === "1001") {
+        $scope.beacon2.push(alert);
+      } else if (alert.beacon_minor === "1002") {
+        $scope.beacon3.push(alert);
+      }
+
+      return $scope.beacon1, $scope.beacon2, $scope.beacon3;
+    });
+
+    var b1 = $scope.beacon1.length;
+    var b2 = $scope.beacon2.length;
+    var b3 = $scope.beacon3.length;
+
+    $scope.labels = ['Kitchen', 'Ping Pong Table', 'Workspace'];
+    $scope.data = [b1, b2, b3];
+  });
+};
+
+IndGraphicController.$inject = ['$scope', '$stateParams', 'ConsoleService'];
+
+exports["default"] = IndGraphicController;
+module.exports = exports["default"];
+
+},{}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -176,7 +219,7 @@ LoginController.$inject = ['$scope', '$state', 'UserService'];
 exports['default'] = LoginController;
 module.exports = exports['default'];
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -198,7 +241,7 @@ RegisterController.$inject = ['$scope', '$state', 'UserService'];
 exports['default'] = RegisterController;
 module.exports = exports['default'];
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -217,7 +260,7 @@ SingleController.$inject = ['$scope', '$state', '$stateParams', 'ConsoleService'
 exports['default'] = SingleController;
 module.exports = exports['default'];
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -260,6 +303,10 @@ var _controllersGraphiccontroller = require('./controllers/graphiccontroller');
 
 var _controllersGraphiccontroller2 = _interopRequireDefault(_controllersGraphiccontroller);
 
+var _controllersIndividualgraphiccontroller = require('./controllers/individualgraphiccontroller');
+
+var _controllersIndividualgraphiccontroller2 = _interopRequireDefault(_controllersIndividualgraphiccontroller);
+
 var _servicesUserservice = require('./services/userservice');
 
 var _servicesUserservice2 = _interopRequireDefault(_servicesUserservice);
@@ -275,9 +322,9 @@ _angular2['default'].module('app', ['ui.router', 'ngCookies', 'chart.js']).const
       'Content-Type': 'application/json'
     }
   }
-}).config(_config2['default']).controller('AdminController', _controllersAdmincontroller2['default']).controller('HomeController', _controllersHomecontroller2['default']).controller('RegisterController', _controllersRegistercontroller2['default']).controller('LoginController', _controllersLogincontroller2['default']).controller('SingleController', _controllersSinglecontroller2['default']).controller('GraphicController', _controllersGraphiccontroller2['default']).service('UserService', _servicesUserservice2['default']).service('ConsoleService', _servicesConsoleservice2['default']);
+}).config(_config2['default']).controller('AdminController', _controllersAdmincontroller2['default']).controller('HomeController', _controllersHomecontroller2['default']).controller('RegisterController', _controllersRegistercontroller2['default']).controller('LoginController', _controllersLogincontroller2['default']).controller('SingleController', _controllersSinglecontroller2['default']).controller('GraphicController', _controllersGraphiccontroller2['default']).controller('IndGraphicController', _controllersIndividualgraphiccontroller2['default']).service('UserService', _servicesUserservice2['default']).service('ConsoleService', _servicesConsoleservice2['default']);
 
-},{"./config":1,"./controllers/admincontroller":2,"./controllers/graphiccontroller":3,"./controllers/homecontroller":4,"./controllers/logincontroller":5,"./controllers/registercontroller":6,"./controllers/singlecontroller":7,"./services/consoleservice":9,"./services/userservice":10,"angular":17,"angular-chart.js":11,"angular-cookies":14,"angular-ui-router":15}],9:[function(require,module,exports){
+},{"./config":1,"./controllers/admincontroller":2,"./controllers/graphiccontroller":3,"./controllers/homecontroller":4,"./controllers/individualgraphiccontroller":5,"./controllers/logincontroller":6,"./controllers/registercontroller":7,"./controllers/singlecontroller":8,"./services/consoleservice":10,"./services/userservice":11,"angular":18,"angular-chart.js":12,"angular-cookies":15,"angular-ui-router":16}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -301,6 +348,7 @@ var ConsoleService = function ConsoleService($http, SERVER, $state, UserService)
   };
 
   this.getEmployee = function (empId) {
+    UserService.checkAuth();
     return $http({
       method: 'GET',
       url: SERVER.URL + '/employees/' + empId,
@@ -324,7 +372,7 @@ ConsoleService.$inject = ['$http', 'SERVER', '$state', 'UserService'];
 exports['default'] = ConsoleService;
 module.exports = exports['default'];
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -373,6 +421,7 @@ var UserService = function UserService($http, SERVER, $cookies, $state) {
   var User = function User(obj) {
     this.username = obj.username;
     this.password = obj.password;
+    this.email = obj.email;
     this.name = obj.name;
   };
 
@@ -387,7 +436,7 @@ UserService.$inject = ['$http', 'SERVER', '$cookies', '$state'];
 exports['default'] = UserService;
 module.exports = exports['default'];
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 (function (factory) {
   'use strict';
   if (typeof exports === 'object') {
@@ -749,7 +798,7 @@ module.exports = exports['default'];
   }
 }));
 
-},{"Chart.js":12,"angular":17}],12:[function(require,module,exports){
+},{"Chart.js":13,"angular":18}],13:[function(require,module,exports){
 /*!
  * Chart.js
  * http://chartjs.org/
@@ -4227,7 +4276,7 @@ module.exports = exports['default'];
 
 
 }).call(this);
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.7
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -4550,11 +4599,11 @@ angular.module('ngCookies').provider('$$cookieWriter', function $$CookieWriterPr
 
 })(window, window.angular);
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 require('./angular-cookies');
 module.exports = 'ngCookies';
 
-},{"./angular-cookies":13}],15:[function(require,module,exports){
+},{"./angular-cookies":14}],16:[function(require,module,exports){
 /**
  * State-based routing for AngularJS
  * @version v0.2.15
@@ -8925,7 +8974,7 @@ angular.module('ui.router.state')
   .filter('isState', $IsStateFilter)
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.7
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -37830,11 +37879,11 @@ $provide.value("$locale", {
 })(window, document);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":16}],18:[function(require,module,exports){
+},{"./angular":17}],19:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.4
  * http://jquery.com/
@@ -47046,7 +47095,7 @@ return jQuery;
 
 }));
 
-},{}]},{},[8])
+},{}]},{},[9])
 
 
 //# sourceMappingURL=main.js.map
