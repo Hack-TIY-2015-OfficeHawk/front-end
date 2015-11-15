@@ -6,7 +6,7 @@ let UserService = function($http, SERVER, $cookies, $state) {
 
   this.checkAuth = function () {
     let token = $cookies.get('auth-Token');
-
+    
     if (token) {
       SERVER.CONFIG.headers['auth-token'] = token;
     } else {
