@@ -40,21 +40,24 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var AdminController = function AdminController($scope, $state, UserService) {
+var AdminController = function AdminController($scope, $state, UserService, ConsoleService, $cookies) {
 
   $scope.logout = function () {
     UserService.userLogout();
   };
 
-  $scope.addOrg = function (organization) {
-    UserService.addOrg(organization).then(function (response) {
-      console.log(response);
-      $state.reload();
-    });
-  };
+  ConsoleService.getOrgList().then(function (response) {
+    console.log(response.data);
+    $scope.employees = response.data.employees;
+  });
+
+  ConsoleService.getBeacon().then(function (response) {
+    console.log(response.data);
+    $scope.deez = response.data;
+  });
 };
 
-AdminController.$inject = ['$scope', '$state', 'UserService'];
+AdminController.$inject = ['$scope', '$state', 'UserService', 'ConsoleService', '$cookies'];
 
 exports['default'] = AdminController;
 module.exports = exports['default'];
@@ -83,7 +86,7 @@ var LoginController = function LoginController($scope, $state, UserService) {
   $scope.login = function (user) {
     UserService.userLogin(user).then(function (res) {
       console.log(res);
-      UserService.loginSuccess(res);
+      UserService.userSuccess(res);
     });
   };
 };
@@ -173,9 +176,34 @@ _angular2['default'].module('app', ['ui.router', 'ngCookies']).constant('SERVER'
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var ConsoleService = function ConsoleService($http, SERVER, $state) {};
+var ConsoleService = function ConsoleService($http, SERVER, $state, UserService) {
 
-ConsoleService.$inject = ['$http', 'SERVER', '$state'];
+  console.log(SERVER);
+
+  // Get List of Employees within an org
+
+  this.getOrgList = function () {
+    UserService.checkAuth();
+
+    return $http({
+      method: 'GET',
+      url: SERVER.URL + '/employees',
+      headers: SERVER.CONFIG.headers,
+      cache: true
+    });
+  };
+
+  this.getBeacon = function () {
+    return $http({
+      method: 'GET',
+      url: SERVER.URL + '/alerts',
+      headers: SERVER.CONFIG.headers,
+      cache: false
+    });
+  };
+};
+
+ConsoleService.$inject = ['$http', 'SERVER', '$state', 'UserService'];
 
 exports['default'] = ConsoleService;
 module.exports = exports['default'];
@@ -195,24 +223,24 @@ var UserService = function UserService($http, SERVER, $cookies, $state) {
   this.checkAuth = function () {
     var token = $cookies.get('auth-Token');
 
-    token = SERVER.CONFIG.headers['access_key'];
-
     if (token) {
-      return $http.get(SERVER.URL + 'check' + SERVER.CONFIG);
+      SERVER.CONFIG.headers['auth-token'] = token;
     } else {
       $state.go('root.home');
     }
+
+    console.log(token);
   };
 
   // user login
 
   this.userLogin = function (userObj) {
-    return $http.post(SERVER.URL + 'employees/login', userObj, SERVER.CONFIG);
+    return $http.post(SERVER.URL + '/employees/login', userObj, SERVER.CONFIG);
   };
 
   this.userSuccess = function (res) {
     $cookies.put('auth-Token', res.data.auth_token);
-    SERVER.CONFIG.headers['access_key'] = res.data.auth_token;
+    SERVER.CONFIG.headers.auth_token = res.data.auth_token;
     $state.go('root.admin');
   };
 
@@ -220,7 +248,7 @@ var UserService = function UserService($http, SERVER, $cookies, $state) {
 
   this.userLogout = function () {
     $cookies.remove('auth-Token');
-    SERVER.CONFIG.headers['access_key'] = null;
+    SERVER.CONFIG.headers.auth_token = null;
     $state.go('root.home');
   };
 

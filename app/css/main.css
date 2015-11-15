@@ -8407,6 +8407,19 @@ th.hide-for-touch {
 .fa-fonticons:before {
   content: ""; }
 
+.employee-views {
+  display: inline-block;
+  margin-top: 0; }
+
+.beacons-current {
+  display: inline-block; }
+
+.headerthing {
+  display: block; }
+
+.bodystuff {
+  display: block; }
+
 body {
   background: #F2F2F2; }
 

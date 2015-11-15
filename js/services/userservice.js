@@ -7,24 +7,24 @@ let UserService = function($http, SERVER, $cookies, $state) {
   this.checkAuth = function () {
     let token = $cookies.get('auth-Token');
 
-    token = SERVER.CONFIG.headers['access_key'];
-
     if (token) {
-      return $http.get(SERVER.URL + 'check' + SERVER.CONFIG);
+      SERVER.CONFIG.headers['auth-token'] = token;
     } else {
       $state.go('root.home');
     }
+
+    console.log(token);
   };
 
   // user login
 
   this.userLogin = function (userObj) {
-    return $http.post(SERVER.URL + 'employees/login', userObj, SERVER.CONFIG);
+    return $http.post(SERVER.URL + '/employees/login', userObj, SERVER.CONFIG);
   };
 
   this.userSuccess = function (res) {
     $cookies.put('auth-Token', res.data.auth_token);
-    SERVER.CONFIG.headers['access_key'] = res.data.auth_token;
+    SERVER.CONFIG.headers.auth_token = res.data.auth_token;
     $state.go('root.admin');
   };
 
@@ -32,7 +32,7 @@ let UserService = function($http, SERVER, $cookies, $state) {
 
   this.userLogout = function () {
     $cookies.remove('auth-Token');
-    SERVER.CONFIG.headers['access_key'] = null;
+    SERVER.CONFIG.headers.auth_token = null;
     $state.go('root.home');
   };
 
