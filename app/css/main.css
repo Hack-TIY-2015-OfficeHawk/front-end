@@ -8464,7 +8464,6 @@ h2 {
   display: inline-block; }
 
 .beacons-current {
-  border: 1px solid #0D0D0D;
   height: 384px;
   width: 80%;
   float: right; }
@@ -8475,7 +8474,10 @@ h2 {
   float: left;
   height: 384px;
   width: 18%;
-  border: 1px solid #0D0D0D; }
+  border: 1px solid #A6A6A6;
+  border-left: none;
+  border-top: none;
+  border-bottom: none; }
 
 .logout-btn {
   float: right;

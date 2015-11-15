@@ -1,12 +1,12 @@
 <div class="headerthing">
 
-  <h2>Single Employee</h2>
+  <h3>Single Employee</h3>
   <button class="button tiny logout-btn" ng-click="logout()">Log Out</button>
-
+<hr>
 </div>
 
 <div class="beacons-current">
-
+  <span>Employee Activity</span>
   <table>
     <thead>
       <tr>
@@ -16,6 +16,7 @@
         <th width="100px">Time Start</th>
         <th width="100px">Duration</th>
       </tr>
+    </thead>
       <tr ng-repeat="d in singleEmp">
 <!--         <td>{{ singleEmp.employee }}</td> -->
         <td>{{ d.beacon_id }}</td>
@@ -23,7 +24,6 @@
         <td>{{ d.duration | date: 'shortTime'}}</td>
         <td>{{ d.duration + ' secs'}}</td>
       </tr>
-    </thead>
   </table>
 
 </div>
