@@ -12,6 +12,11 @@ $ltgray: #F2F2F2;
 $dkgreen: #3A5959;
 $teal: #008D73;
 
+.logininput {
+  width: 30%;
+  margin: 15px auto;
+}
+
 .employee-views {
   display: inline-block;
   margin-top: 0;
@@ -135,9 +140,10 @@ h2 {
 
 .chart-wrapper {
   margin: 15px auto;
-  width: 800px;
-  border: 1px solid $black;
+  width: 1000px;
+  border: 1px solid $gray;
   border-radius: 3px;
+  text-align: center;
 
   h3 {
     text-align: center;
@@ -150,6 +156,13 @@ h2 {
       list-style: none;
     }
   }
+}
+
+.chart-container {
+  display: inline-block;
+  width: 600px;
+  margin-left: -100px;
+  margin-right: -100px;
 }
 
 // Individual Employee Page 
