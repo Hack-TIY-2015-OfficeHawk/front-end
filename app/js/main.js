@@ -138,7 +138,7 @@ var HomeController = function HomeController($scope, $state, $timeout) {
     a.play();
     $timeout(function () {
       $state.go('root.login');
-    }, 1000);
+    }, 0);
   };
 
   $scope.playregister = function () {
@@ -146,7 +146,7 @@ var HomeController = function HomeController($scope, $state, $timeout) {
     a.play();
     $timeout(function () {
       $state.go('root.register');
-    }, 1000);
+    }, 0);
   };
 };
 

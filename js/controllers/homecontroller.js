@@ -9,7 +9,7 @@ let HomeController = function($scope, $state, $timeout) {
       a.play();
       $timeout(function() {
         $state.go('root.login');
-      }, 1000);
+      }, 0);
     };
 
 
@@ -18,7 +18,7 @@ let HomeController = function($scope, $state, $timeout) {
       a.play();
       $timeout(function() {
         $state.go('root.register');
-      }, 1000);
+      }, 0);
   };
 
 
