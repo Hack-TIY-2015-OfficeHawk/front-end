@@ -8517,8 +8517,6 @@ h2 {
     text-align: center; }
     .chart-wrapper .polararea-legend li {
       list-style: none; }
-<<<<<<< HEAD
-=======
 
 .chart-container {
   display: inline-block;
@@ -8536,7 +8534,6 @@ h2 {
   width: 550px; }
   .pie-wrapper span {
     font-weight: bold; }
->>>>>>> master
 
 .emptime {
   display: block; }
